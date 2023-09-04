@@ -1,0 +1,22 @@
+[
+  {
+    "ID": 0,
+    "name": "TEST1",
+    "time": "00:04:00",
+    "stroke": 25,
+    "avg": "2:00",
+    "distance": 900,
+    "pace": "4:00",
+    "rip": 2
+  },
+  {
+    "ID": 1,
+    "name": "TEST2",
+    "time": "00:04:00",
+    "stroke": 25,
+    "avg": "2:00",
+    "distance": 900,
+    "pace": "4:00",
+    "rip": 2
+  }
+]

@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  font-family: "Helvetica", sans-serif;
+}
+
+.headerStyle {
+  height: 80px;
+  background-color: #75c9b7;
+}
+.headerTitle {
+  font-size: 20px;
+  color: white;
+}
+
+.headerStyle h2 {
+  margin: 0;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.tableStyle {
+  margin-top: 20px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  border: solid 1px #000000;
+  border-radius: 10px;
+}
+
+.tableStyle tr:last-child td {
+  padding-bottom: 20px;
+}
+
+.tableStyle td {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.boatRowStyle {
+  margin-right: 20px;
+  margin-left: 20px;
+  background-color: #0378a5;
+  height: 30px;
+  position: relative;
+}
+
+.boatStyle {
+  margin-top: 20px;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  position: absolute;
+  bottom: 5px;
+}
