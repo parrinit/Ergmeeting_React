@@ -39,6 +39,7 @@ body {
 .boatRowStyle {
   margin-right: 20px;
   margin-left: 20px;
+  margin-top:20px;
   background-color: #0378a5;
   height: 30px;
   position: relative;

@@ -1,7 +1,7 @@
 import React from "react";
 
 const Boat = (props) => {
-  const x = 1000;
+  var x = (props.px || 0)
   var styles = {
     transform: `translate(${x}px)`
   };

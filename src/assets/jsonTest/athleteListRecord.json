@@ -5,7 +5,7 @@
     "time": "00:04:00",
     "stroke": 25,
     "avg": "2:00",
-    "distance": 900,
+    "distance": 100,
     "pace": "4:00",
     "rip": 2
   },
@@ -16,6 +16,16 @@
     "stroke": 25,
     "avg": "2:00",
     "distance": 900,
+    "pace": "4:00",
+    "rip": 2
+  },
+    {
+    "ID": 2,
+    "name": "TEST3",
+    "time": "00:04:00",
+    "stroke": 25,
+    "avg": "2:00",
+    "distance": 0,
     "pace": "4:00",
     "rip": 2
   }
