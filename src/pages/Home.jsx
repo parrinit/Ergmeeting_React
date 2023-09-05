@@ -1,17 +1,22 @@
 import React, { useState } from "react";
-import CardAthleteList from "../component/CardAthlete_list";
-import * as res from "../assets/jsonTest/athleteListRecord.json";
-
 import Header from "../component/Header";
 import BoatRow from "../component/BoatRow";
+import BoatList from "../component/BoatList";
+import CardAthleteList from "../component/CardAthlete_list";
+import * as athleteLis from "../assets/jsonTest/athleteListRecord.json";
+import * as getWorkoutData from "../assets/jsonTest/getWorkoutData.json";
+
+
+
 
 const HomePage = (props) => {
-  let athleteOBJArray = res;
+  let athleteOBJArray = athleteLis;
+  var getWorkoutDataObj = getWorkoutData
   return (
     <div>
       <Header name="Title">fdsfs</Header>
       <CardAthleteList objs={athleteOBJArray.default}></CardAthleteList>
-      <BoatRow obj={athleteOBJArray[0]}></BoatRow>
+      <BoatList athleteList={athleteOBJArray} workoutData={getWorkoutDataObj}></BoatList>
     </div>
   );
 };
