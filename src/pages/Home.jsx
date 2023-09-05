@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect,useTransition } from "react";
 import Header from "../component/Header";
 import BoatRow from "../component/BoatRow";
 import BoatList from "../component/BoatList";
@@ -10,19 +10,28 @@ import * as getWorkoutData from "../assets/jsonTest/getWorkoutData.json";
 
 
 const HomePage = (props) => {
-  const [athleteOBJArray,setathleteOBJArray]=useState(athleteList);
+  const [athleteOBJArray,setathleteOBJArray]=useState(athleteList.default);
   const [getWorkoutDataObj,setgetWorkoutDataObj] = useState(getWorkoutData);
+  //INFO useTransition is a React Hook that lets you update the state without blocking the UI.
+  const [isPending, startTransition] = useTransition();
+
+  useEffect(()=>{
+    console.log("useEffect")
+  })
 
   function setDistanceTest(distance = 10){
-    let tempathleteOBJArray = athleteOBJArray.default || athleteOBJArray
-    tempathleteOBJArray.forEach(element => {
-      element.distance = parseInt(element.distance) + 10;
-      if(element.distance > getWorkoutDataObj.Workout){
-         element.distance = parseInt(getWorkoutDataObj.Workout);
-      }
-    });
-    console.log("tempathleteOBJArray",tempathleteOBJArray);
-      setathleteOBJArray((prev) => tempathleteOBJArray);
+    startTransition(()=>{
+      let tempathleteOBJArray = athleteOBJArray;
+      setathleteOBJArray([])
+      tempathleteOBJArray.forEach(element => {
+        element.distance = parseInt(element.distance) + 10;
+        if(element.distance > getWorkoutDataObj.Workout){
+           element.distance = parseInt(getWorkoutDataObj.Workout);
+        }
+        setathleteOBJArray((prev)=> [...prev,element])
+      });
+    })
+    
   }
 
 
@@ -30,8 +39,8 @@ const HomePage = (props) => {
     <div>
       <Header name="Title">fdsfs</Header>
       <button onClick={()=>setDistanceTest()}>TEST</button>
-      <CardAthleteList objs={athleteOBJArray.default || athleteOBJArray}></CardAthleteList>
-      <BoatList athleteList={athleteOBJArray.default || athleteOBJArray} workoutData={getWorkoutDataObj}></BoatList>
+      <CardAthleteList objs={athleteOBJArray}></CardAthleteList>
+      <BoatList athleteList={athleteOBJArray} workoutData={getWorkoutDataObj}></BoatList>
     </div>
   );
 };
