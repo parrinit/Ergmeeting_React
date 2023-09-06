@@ -1,8 +1,7 @@
 import React, { useState,useEffect,useTransition } from "react";
 import Header from "../component/Header";
-import BoatRow from "../component/BoatRow";
-import BoatList from "../component/BoatList";
-import CardAthleteList from "../component/CardAthlete_list";
+import BoatList from "../component/RecordList/BoatList";
+import CardAthleteList from "../component/RecordList/CardAthlete_list";
 import * as athleteList from "../assets/jsonTest/athleteListRecord.json";
 import * as getWorkoutData from "../assets/jsonTest/getWorkoutData.json";
 
@@ -31,14 +30,17 @@ const HomePage = (props) => {
         setathleteOBJArray((prev)=> [...prev,element])
       });
     })
-    
   }
 
+  function setDistanceTestById(){
+
+  }
 
   return (
     <div>
       <Header name="Title">fdsfs</Header>
       <button onClick={()=>setDistanceTest()}>TEST</button>
+      {buttonList}
       <CardAthleteList objs={athleteOBJArray}></CardAthleteList>
       <BoatList athleteList={athleteOBJArray} workoutData={getWorkoutDataObj}></BoatList>
     </div>
