@@ -1,7 +1,7 @@
 import React, { useState,useEffect,useTransition } from "react";
 import Header from "../component/Header";
-import BoatList from "../component/RecordList/BoatList";
-import CardAthleteList from "../component/RecordList/CardAthlete_list";
+import BoatList from "../component/RecordList/Boat/BoatList";
+import CardAthleteList from "../component/RecordList/Card/CardAthlete_list";
 import * as athleteList from "../assets/jsonTest/athleteListRecord.json";
 import * as getWorkoutData from "../assets/jsonTest/getWorkoutData.json";
 
@@ -21,7 +21,7 @@ const HomePage = (props) => {
       //INFO usare deep Copy
       let tempathleteOBJArray = [...athleteOBJArray];
       tempathleteOBJArray.forEach(element => {
-        element.distance = parseInt(element.distance) + 10;
+        element.distance = parseInt(element.distance) + distance;
         if(element.distance > getWorkoutDataObj.Workout){
            element.distance = parseInt(getWorkoutDataObj.Workout);
         }
