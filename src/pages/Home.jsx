@@ -13,33 +13,55 @@ const HomePage = (props) => {
   const [getWorkoutDataObj,setgetWorkoutDataObj] = useState(getWorkoutData);
   //INFO useTransition is a React Hook that lets you update the state without blocking the UI.
   const [isPending, startTransition] = useTransition();
+  const [intervallLoop,setintervallLoop]=useState();
 
-  useEffect(()=>{
-    console.log("useEffect")
-  })
 
   function setDistanceTest(distance = 10){
     startTransition(()=>{
-      let tempathleteOBJArray = athleteOBJArray;
-      setathleteOBJArray([])
+      //INFO usare deep Copy
+      let tempathleteOBJArray = [...athleteOBJArray];
       tempathleteOBJArray.forEach(element => {
         element.distance = parseInt(element.distance) + 10;
         if(element.distance > getWorkoutDataObj.Workout){
            element.distance = parseInt(getWorkoutDataObj.Workout);
         }
-        setathleteOBJArray((prev)=> [...prev,element])
       });
+      setathleteOBJArray(tempathleteOBJArray);
     })
   }
 
-  function setDistanceTestById(){
+
+  function launchLoopTest(){
+    setintervallLoop(setInterval(() => {
+      setDistanceTest(5)
+    }, 1000));
 
   }
+
+  function stopLoopTest(){
+    clearInterval(intervallLoop)
+    setintervallLoop(null);
+  }
+
+  function setDistanceTestById(id,distance){
+    let tempathleteOBJArray = [...athleteOBJArray];
+    let indexOfList =  tempathleteOBJArray.findIndex((x)=> {return x.ID == id});
+    if(indexOfList > -1){
+      tempathleteOBJArray[indexOfList].distance += distance;
+    }
+    setathleteOBJArray(tempathleteOBJArray);
+  }
+
+  var buttonList = athleteOBJArray.map((obj,index)=>{
+    return <button onClick={()=>setDistanceTestById(obj.ID,20)} key={index}>{obj.name}</button>
+  })
 
   return (
     <div>
       <Header name="Title">fdsfs</Header>
       <button onClick={()=>setDistanceTest()}>TEST</button>
+      <button onClick={()=>launchLoopTest()}>launchLoopTest</button>
+      <button onClick={()=>stopLoopTest()}>stopLoopTest</button>
       {buttonList}
       <CardAthleteList objs={athleteOBJArray}></CardAthleteList>
       <BoatList athleteList={athleteOBJArray} workoutData={getWorkoutDataObj}></BoatList>
