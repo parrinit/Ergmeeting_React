@@ -16,14 +16,16 @@ const BoatList = (props) => {
     var retObj = [];
     if (athleteList != null && athleteList.length > 0) {
         retObj = athleteList.map((obj, index) => {
-          return (<div className="">
-            <BoatRow objRecord={obj} key={index} workoutData={workoutData} rangeMn={rangeMin} rangeMx={rangeMax} width={width}></BoatRow>
-          </div>
+          return (
+            <BoatRow objRecord={obj} workoutData={workoutData} rangeMn={rangeMin}  key={index}rangeMx={rangeMax} width={width}></BoatRow>
           );
         });
       }
     
-      return <div className="boatListStyle">{retObj}</div>;
+      return (<div className="boatListCore">
+          {/* Qui aggiungere le bande */}
+          <div className="boatListStyle">{retObj}</div> 
+        </div>);
 
 }
 

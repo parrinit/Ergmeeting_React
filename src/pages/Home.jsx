@@ -1,9 +1,8 @@
 import React, { useState,useEffect,useTransition } from "react";
 import Header from "../component/Header";
-import BoatList from "../component/RecordList/Boat/BoatList";
-import CardAthleteList from "../component/RecordList/Card/CardAthlete_list";
 import * as athleteList from "../assets/jsonTest/athleteListRecord.json";
 import * as getWorkoutData from "../assets/jsonTest/getWorkoutData.json";
+import CoreRecodList from "../component/RecordList/CoreRecordList";
 
 
 
@@ -33,13 +32,14 @@ const HomePage = (props) => {
 
   function launchLoopTest(){
     setintervallLoop(setInterval(() => {
-      setDistanceTest(5)
+      setDistanceTest(5);
     }, 1000));
 
   }
 
   function stopLoopTest(){
-    clearInterval(intervallLoop)
+    console.log(intervallLoop);
+    clearInterval(intervallLoop);
     setintervallLoop(null);
   }
 
@@ -63,8 +63,9 @@ const HomePage = (props) => {
       <button onClick={()=>launchLoopTest()}>launchLoopTest</button>
       <button onClick={()=>stopLoopTest()}>stopLoopTest</button>
       {buttonList}
-      <CardAthleteList objs={athleteOBJArray}></CardAthleteList>
-      <BoatList athleteList={athleteOBJArray} workoutData={getWorkoutDataObj}></BoatList>
+      {/* <CardAthleteList athleteList={athleteOBJArray} workoutData={getWorkoutDataObj}></CardAthleteList>
+      <BoatList athleteList={athleteOBJArray} workoutData={getWorkoutDataObj}></BoatList> */}
+      <CoreRecodList athleteList={athleteOBJArray} workoutData={getWorkoutDataObj}></CoreRecodList>
     </div>
   );
 };

@@ -53,3 +53,7 @@ body {
   position: absolute;
   bottom: 5px;
 }
+
+.boatListCore{
+  position: relative;
+}

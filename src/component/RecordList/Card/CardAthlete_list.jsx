@@ -2,7 +2,7 @@ import React from "react";
 import CardAthlete from "./CardAthlete";
 
 const CartAthleteList = (props) => {
-  var objArray = props.objs;
+  var objArray = props.athleteList;
 
   var retObj = [];
   if (objArray != null && objArray.length > 0) {
