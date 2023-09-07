@@ -57,3 +57,13 @@ body {
 .boatListCore{
   position: relative;
 }
+
+/* BANDA */
+.bandStyle{
+border: 1px solid black;
+  height: calc(100% + 50px);
+  position: absolute;
+  top: -25px;
+  /* left: 20px; */
+  z-index: 999;
+}

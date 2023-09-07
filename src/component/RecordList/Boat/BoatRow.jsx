@@ -16,7 +16,7 @@ const BoatRow = (props) => {
   var rangeMx = props.rangeMx;
   var distance = objRecord.distance;
   var px = 0;
-  var unitPxDistance = width / (rangeMx - rangeMn) ;
+  var unitPxDistance =  props.unitPxDistance ;
 
 
   if (distance > rangeMn) {
