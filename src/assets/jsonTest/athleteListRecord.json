@@ -1,6 +1,6 @@
 [
   {
-    "ID": 0,
+    "AthleteID": 0,
     "name": "TEST1",
     "time": "00:04:00",
     "stroke": 25,
@@ -10,7 +10,7 @@
     "rip": 2
   },
   {
-    "ID": 1,
+    "AthleteID": 1,
     "name": "TEST2",
     "time": "00:04:00",
     "stroke": 25,
@@ -20,7 +20,7 @@
     "rip": 2
   },
     {
-    "ID": 2,
+    "AthleteID": 2,
     "name": "TEST3",
     "time": "00:04:00",
     "stroke": 25,

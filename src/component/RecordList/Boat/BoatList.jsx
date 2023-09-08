@@ -38,16 +38,8 @@ const BoatList = (props) => {
         var nextBandMeterTemp = rangeMin / step;
 
         valueCount = Math.ceil(nextBandMeterTemp) * step;
-        if(environment.isDebug){
-          console.log("nextBandMeterTemp",nextBandMeterTemp);
-          console.log("valueCount",valueCount);
-        }
         var indexBand = 0
         while(valueCount <= rangeMax){
-          if(environment.isDebug){
-            console.log(valueCount);
-          }
-
           var px = calcDistanceInPX(valueCount,width,rangeMax,rangeMin)
           objBand.push(
             <Band key={indexBand} px ={px} label={valueCount}></Band>

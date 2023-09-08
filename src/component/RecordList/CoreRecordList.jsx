@@ -17,24 +17,56 @@ const CoreRecodList = (props) =>{
     const [rangeMin,setRangeMin] = useState(0);
     const [rangeMax,setRangeMax] = useState(3000);
   
-  
-    function setDistanceTest(distance = 10){
-      startTransition(()=>{
-        //INFO usare deep Copy
-        let tempathleteOBJArray = [...athleteOBJArray];
-        tempathleteOBJArray.forEach(element => {
-          element.distance = parseInt(element.distance) + distance;
-          if(element.distance > getWorkoutDataObj.Workout){
-             element.distance = parseInt(getWorkoutDataObj.Workout);
-          }
 
-          if(element.distance > rangeMax){
-            var diffRange = element.distance - rangeMax;
-            setRangeDiff(diffRange);
-          }
-        });
-        setathleteOBJArray(tempathleteOBJArray);
-      })
+    //#region TEST
+      
+    function launchLoopTest(){
+      if(!intervallLoop){
+          setintervallLoop(setInterval(() => {
+              setDistanceTest(50);
+          }, 1000));
+    
+      }
+  }
+
+  function stopLoopTest(){
+      if(environment.isDebug){
+          console.log(intervallLoop);
+      }
+      clearInterval(intervallLoop);
+      setintervallLoop(null);
+  }
+
+  function setDistanceTestById(id,distance){
+    let tempathleteOBJArray = [...athleteOBJArray];
+    let indexOfList =  tempathleteOBJArray.findIndex((x)=> {return x.AthleteID == id});
+    if(indexOfList > -1){
+      tempathleteOBJArray[indexOfList].distance += distance;
+    }
+    setathleteOBJArray(tempathleteOBJArray);
+  }
+
+  function setDistanceTest(distance = 10){
+    startTransition(()=>{
+      //INFO usare deep Copy
+      let tempathleteOBJArray = [...athleteOBJArray];
+      tempathleteOBJArray.forEach(element => {
+        let distanceToSet = element.distance + distance
+        setDistanceFromServer(element.AthleteID,distanceToSet)
+      });
+    })
+  }
+    //#endregion
+
+    function setDistanceFromServer(id, distance){
+      let tempathleteOBJArray = [...athleteOBJArray];
+      let indexOfList =  tempathleteOBJArray.findIndex((x)=> {return x.AthleteID == id});
+      console.log("id",id)
+      console.log("indexOfList",indexOfList)
+      if(indexOfList > -1){
+        tempathleteOBJArray[indexOfList].distance += distance;
+      }
+      setathleteOBJArray(tempathleteOBJArray);
     }
 
     const setRangeDiff = (diff) => {
@@ -42,35 +74,10 @@ const CoreRecodList = (props) =>{
       setRangeMin(rangeMin + diff);
     }
   
-  
-    function launchLoopTest(){
-        if(!intervallLoop){
-            setintervallLoop(setInterval(() => {
-                setDistanceTest(50);
-            }, 1000));
-      
-        }
-    }
-  
-    function stopLoopTest(){
-        if(environment.isDebug){
-            console.log(intervallLoop);
-        }
-        clearInterval(intervallLoop);
-        setintervallLoop(null);
-    }
-  
-    function setDistanceTestById(id,distance){
-      let tempathleteOBJArray = [...athleteOBJArray];
-      let indexOfList =  tempathleteOBJArray.findIndex((x)=> {return x.ID == id});
-      if(indexOfList > -1){
-        tempathleteOBJArray[indexOfList].distance += distance;
-      }
-      setathleteOBJArray(tempathleteOBJArray);
-    }
+
   
     var buttonList = athleteOBJArray.map((obj,index)=>{
-      return <button onClick={()=>setDistanceTestById(obj.ID,20)} key={index}>{obj.name}</button>
+      return <button onClick={()=>setDistanceTestById(obj.AthleteID,20)} key={index}>{obj.name}</button>
     })
 
     return (
