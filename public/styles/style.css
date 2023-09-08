@@ -60,7 +60,7 @@ body {
 
 /* BANDA */
 .bandStyle{
-  border: 1px solid black;
+  border: 1px solid #8a9300ba;
   height: calc(100% + 50px);
   position: absolute;
   top: -25px;

@@ -1,21 +1,20 @@
 import React, { useRef,useState } from "react";
 import Band from "./Band";
 import BoatRow from "./BoatRow";
+import environment from "../../../environment/environment";
 
 const BoatList = (props) => {
     //INFO useRef is a React Hook that lets you reference a value that’s not needed for rendering.
     const windowSize = useRef([window.innerWidth, window.innerHeight]);
 
-    const [rangeMin,setRangeMin] = useState(20);
-    const [rangeMax,setRangeMax] = useState(2999);
-
     //-60 sono 40 mi margin + 20 di larghezza boat
-    var width = windowSize.current[0] - 60;
+    var width = windowSize.current[0] - 40;
 
     var athleteList = props.athleteList;
     var workoutData= props.workoutData;
+    var rangeMin = props.rangeMin;
+    var rangeMax = props.rangeMax;
 
-    var unitPxDistance = width / (rangeMax - rangeMin) ;
 
 
     var retObj = [];
@@ -25,7 +24,7 @@ const BoatList = (props) => {
         if (athleteList != null && athleteList.length > 0) {
           retObj = athleteList.map((obj, index) => {
             return (
-              <BoatRow key={index} objRecord={obj} workoutData={workoutData} rangeMn={rangeMin} rangeMx={rangeMax} width={width} unitPxDistance={unitPxDistance}></BoatRow>
+              <BoatRow key={index} objRecord={obj} workoutData={workoutData} rangeMn={rangeMin} rangeMx={rangeMax} width={width}></BoatRow>
             );
           });
         }
@@ -37,21 +36,19 @@ const BoatList = (props) => {
         var valueCount = 0;
         var step = 500;
         var nextBandMeterTemp = rangeMin / step;
-        console.log("nextBandMeterTemp",nextBandMeterTemp);
+
         valueCount = Math.ceil(nextBandMeterTemp) * step;
-        console.log("valueCount",valueCount);
+        if(environment.isDebug){
+          console.log("nextBandMeterTemp",nextBandMeterTemp);
+          console.log("valueCount",valueCount);
+        }
         var indexBand = 0
         while(valueCount <= rangeMax){
-          console.log(valueCount);
-          var px = 0   
-          if (valueCount >= rangeMin) {
-            var distanceTempPx = valueCount - rangeMin;
-            px = distanceTempPx * unitPxDistance;
+          if(environment.isDebug){
+            console.log(valueCount);
           }
 
-          if (valueCount >= rangeMax) {
-            px = width;
-          }
+          var px = calcDistanceInPX(valueCount,width,rangeMax,rangeMin)
           objBand.push(
             <Band key={indexBand} px ={px} label={valueCount}></Band>
           )
@@ -63,20 +60,26 @@ const BoatList = (props) => {
       init();
     
       return (<div className="boatListCore">
-          <div>
-            <div>
-              <label>MIN</label>
-              <input value={rangeMin} onChange={e=>setRangeMin(e.target.value)}></input>
-            </div>
-            <div>
-              <label>MAX</label>
-              <input value={rangeMax} onChange={e=>setRangeMax(e.target.value)}></input>
-            </div>
-          </div>
           {objBand}
           <div className="boatListStyle">{retObj}</div> 
         </div>);
 
 }
 
-export default BoatList
+const calcDistanceInPX = (distance, width,rangeMax,rangeMin)=>{
+  var unitPxDistance = width / (rangeMax - rangeMin) ;
+
+  var px = 0   
+  if (distance >= rangeMin) {
+    var distanceTempPx = distance - rangeMin;
+    px = distanceTempPx * unitPxDistance;
+  }
+
+  if (distance >= rangeMax) {
+    px = width;
+  }
+
+  return px
+}
+
+export  {BoatList as default ,calcDistanceInPX}

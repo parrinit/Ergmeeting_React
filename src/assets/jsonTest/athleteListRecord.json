@@ -5,7 +5,7 @@
     "time": "00:04:00",
     "stroke": 25,
     "avg": "2:00",
-    "distance": 100,
+    "distance": 0,
     "pace": "4:00",
     "rip": 2
   },
@@ -15,7 +15,7 @@
     "time": "00:04:00",
     "stroke": 25,
     "avg": "2:00",
-    "distance": 900,
+    "distance": 3000,
     "pace": "4:00",
     "rip": 2
   },
