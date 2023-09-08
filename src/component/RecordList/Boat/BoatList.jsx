@@ -10,8 +10,8 @@ const BoatList = (props) => {
 
     var athleteList = props.athleteList;
     var workoutData= props.workoutData;
-    var rangeMin = 0
-    var rangeMax = 2999
+    var rangeMin = 499;
+    var rangeMax = 2999;
 
     var unitPxDistance = width / (rangeMax - rangeMin) ;
 
@@ -23,7 +23,7 @@ const BoatList = (props) => {
         if (athleteList != null && athleteList.length > 0) {
           retObj = athleteList.map((obj, index) => {
             return (
-              <BoatRow objRecord={obj} workoutData={workoutData} rangeMn={rangeMin}  key={index}rangeMx={rangeMax} width={width} unitPxDistance={unitPxDistance}></BoatRow>
+              <BoatRow key={index} objRecord={obj} workoutData={workoutData} rangeMn={rangeMin} rangeMx={rangeMax} width={width} unitPxDistance={unitPxDistance}></BoatRow>
             );
           });
         }
@@ -33,13 +33,26 @@ const BoatList = (props) => {
       function getBandArray(){
         var valueCount = 0;
         var step = 500;
-        var nextBandMeterTemp = rangeMin%step;
+        var nextBandMeterTemp = rangeMin / step;
         console.log("nextBandMeterTemp",nextBandMeterTemp);
         valueCount = Math.ceil(nextBandMeterTemp) * step;
         console.log("valueCount",valueCount);
+        var objBand = [];
         while(valueCount <= (rangeMax-step)){
           valueCount += step;
           console.log(valueCount);
+          var px = 0   
+          if (distance > rangeMn) {
+            var distanceTempPx = valueCount - rangeMn;
+            px = distanceTempPx * unitPxDistance;
+          }
+
+          if (distance > rangeMx) {
+            px = width;
+          }
+          objBand.push(
+            <Band px ={px} ></Band>
+          )
         }
       }
 
