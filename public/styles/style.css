@@ -60,10 +60,17 @@ body {
 
 /* BANDA */
 .bandStyle{
-border: 1px solid black;
+  border: 1px solid black;
   height: calc(100% + 50px);
   position: absolute;
   top: -25px;
+  /* left: 20px; */
+  z-index: 999;
+}
+
+.bandLabelStyle{
+  position: absolute;
+  top: -30px;
   /* left: 20px; */
   z-index: 999;
 }

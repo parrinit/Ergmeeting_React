@@ -7,7 +7,10 @@ const Band = (props) =>{
         transform: `translate(${x}px)`
     };
     return(
-        <div style={styles} className="bandStyle"></div>
+        <div>
+            <div style={styles} className="bandLabelStyle">{props.label}</div>
+            <div style={styles} className="bandStyle"></div>
+        </div>
     )
 }
 

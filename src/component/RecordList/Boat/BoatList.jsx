@@ -10,7 +10,7 @@ const BoatList = (props) => {
 
     var athleteList = props.athleteList;
     var workoutData= props.workoutData;
-    var rangeMin = 200;
+    var rangeMin = 20;
     var rangeMax = 2999;
 
     var unitPxDistance = width / (rangeMax - rangeMin) ;
@@ -38,8 +38,8 @@ const BoatList = (props) => {
         console.log("nextBandMeterTemp",nextBandMeterTemp);
         valueCount = Math.ceil(nextBandMeterTemp) * step;
         console.log("valueCount",valueCount);
-        while(valueCount <= (rangeMax-step)){
-          valueCount += step;
+        var indexBand = 0
+        while(valueCount <= rangeMax){
           console.log(valueCount);
           var px = 0   
           if (valueCount > rangeMin) {
@@ -51,8 +51,10 @@ const BoatList = (props) => {
             px = width;
           }
           objBand.push(
-            <Band px ={px} ></Band>
+            <Band key={indexBand} px ={px} label={valueCount}></Band>
           )
+          indexBand++;
+          valueCount += step;
         }
       }
 
