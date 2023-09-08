@@ -41,6 +41,7 @@ body {
   margin-left: 20px;
   margin-top:20px;
   background-color: #0378a5;
+  background-image: url("../image/pixel/pixelWater.jpeg");
   height: 30px;
   position: relative;
 }
