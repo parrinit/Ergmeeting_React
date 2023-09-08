@@ -8,7 +8,7 @@ const BoatList = (props) => {
     const windowSize = useRef([window.innerWidth, window.innerHeight]);
 
     //-60 sono 40 mi margin + 20 di larghezza boat
-    var width = windowSize.current[0] - 40;
+    var width = windowSize.current[0] - 80;
 
     var athleteList = props.athleteList;
     var workoutData= props.workoutData;

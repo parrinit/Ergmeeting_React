@@ -54,8 +54,19 @@ body {
   bottom: 5px;
 }
 
+.boatLabelStyle{
+  transform: translate(1209px);
+  z-index: 999;
+  top: -18px;
+  position: absolute;
+  width: 50px;
+  text-align: center;
+  left: -17px;
+}
+
 .boatListCore{
   position: relative;
+  margin-top: 40px;
 }
 
 /* BANDA */
@@ -70,7 +81,9 @@ body {
 
 .bandLabelStyle{
   position: absolute;
-  top: -30px;
-  /* left: 20px; */
+  top: -41px;
   z-index: 999;
+  left: -25px;
+  text-align: center;
+  width: 50px;
 }

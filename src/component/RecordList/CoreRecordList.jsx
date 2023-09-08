@@ -14,7 +14,7 @@ const CoreRecodList = (props) =>{
     const [intervallLoop,setintervallLoop]=useState();
 
     //usare per cambaire le bande
-    const [rangeMin,setRangeMin] = useState(20);
+    const [rangeMin,setRangeMin] = useState(0);
     const [rangeMax,setRangeMax] = useState(3000);
   
   
@@ -27,9 +27,19 @@ const CoreRecodList = (props) =>{
           if(element.distance > getWorkoutDataObj.Workout){
              element.distance = parseInt(getWorkoutDataObj.Workout);
           }
+
+          if(element.distance > rangeMax){
+            var diffRange = element.distance - rangeMax;
+            setRangeDiff(diffRange);
+          }
         });
         setathleteOBJArray(tempathleteOBJArray);
       })
+    }
+
+    const setRangeDiff = (diff) => {
+      setRangeMax(rangeMax + diff);
+      setRangeMin(rangeMin + diff);
     }
   
   
@@ -79,8 +89,8 @@ const CoreRecodList = (props) =>{
             </div>
           </div>
             {buttonList}
-            <CardAthleteList athleteList={athleteOBJArray} workoutData={getWorkoutDataObj}></CardAthleteList>
             <BoatList athleteList={athleteOBJArray} workoutData={getWorkoutDataObj} rangeMin={rangeMin} rangeMax={rangeMax}></BoatList>
+            <CardAthleteList athleteList={athleteOBJArray} workoutData={getWorkoutDataObj}></CardAthleteList>
         </div>
     )
 }

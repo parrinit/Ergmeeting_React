@@ -4,7 +4,7 @@ import { calcDistanceInPX } from "./BoatList";
 import environment from "../../../environment/environment";
 
 const BoatRow = (props) => {
-  var width = props.width -40
+  var width = props.width
   //TODO passare range distanza es 1000m-3000m e distanza attuale, se minore di min-range px = 0
   var objRecord = props.objRecord;
   var workoutData = props.workoutData
@@ -15,7 +15,7 @@ const BoatRow = (props) => {
 
   return (
     <div className="boatRowStyle">
-      <Boat px={px}></Boat>
+      <Boat px={px} distance={distance + "m"}></Boat>
     </div>
   );
 };

@@ -1,8 +1,7 @@
 import React from "react";
 
 const Band = (props) =>{
-
-    let x = props.px
+    let x = props.px + 40
     var styles = {
         transform: `translate(${x}px)`
     };
