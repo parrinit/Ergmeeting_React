@@ -1,17 +1,19 @@
-import React, { useRef } from "react";
+import React, { useRef,useState } from "react";
 import Band from "./Band";
 import BoatRow from "./BoatRow";
 
 const BoatList = (props) => {
     //INFO useRef is a React Hook that lets you reference a value that’s not needed for rendering.
     const windowSize = useRef([window.innerWidth, window.innerHeight]);
+
+    const [rangeMin,setRangeMin] = useState(20);
+    const [rangeMax,setRangeMax] = useState(2999);
+
     //-60 sono 40 mi margin + 20 di larghezza boat
     var width = windowSize.current[0] - 60;
 
     var athleteList = props.athleteList;
     var workoutData= props.workoutData;
-    var rangeMin = 20;
-    var rangeMax = 2999;
 
     var unitPxDistance = width / (rangeMax - rangeMin) ;
 
@@ -58,11 +60,29 @@ const BoatList = (props) => {
         }
       }
 
+      function setMinMaxRange(isMin, value){
+        if(isMin == true){
+          setRangeMin(value);
+        }else{
+          setRangeMax(value);
+        }
+        getBandArray();
+
+      }
+
       init();
     
       return (<div className="boatListCore">
-          {/* Qui aggiungere le bande */}
-          {/* <Band px={20}></Band> */}
+          <div>
+            <div>
+              <label>MIN</label>
+              <input value={rangeMin} onChange={e=>setRangeMin(e.target.value)}></input>
+            </div>
+            <div>
+              <label>MAX</label>
+              <input value={rangeMax} onChange={e=>setRangeMax(e.target.value)}></input>
+            </div>
+          </div>
           {objBand}
           <div className="boatListStyle">{retObj}</div> 
         </div>);
