@@ -44,12 +44,12 @@ const BoatList = (props) => {
         while(valueCount <= rangeMax){
           console.log(valueCount);
           var px = 0   
-          if (valueCount > rangeMin) {
+          if (valueCount >= rangeMin) {
             var distanceTempPx = valueCount - rangeMin;
             px = distanceTempPx * unitPxDistance;
           }
 
-          if (valueCount > rangeMax) {
+          if (valueCount >= rangeMax) {
             px = width;
           }
           objBand.push(
@@ -58,16 +58,6 @@ const BoatList = (props) => {
           indexBand++;
           valueCount += step;
         }
-      }
-
-      function setMinMaxRange(isMin, value){
-        if(isMin == true){
-          setRangeMin(value);
-        }else{
-          setRangeMax(value);
-        }
-        getBandArray();
-
       }
 
       init();

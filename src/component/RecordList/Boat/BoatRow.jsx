@@ -19,12 +19,12 @@ const BoatRow = (props) => {
   var unitPxDistance =  props.unitPxDistance ;
 
 
-  if (distance > rangeMn) {
+  if (distance => rangeMn) {
     var distanceTempPx = distance - rangeMn;
     px = distanceTempPx * unitPxDistance;
   }
 
-  if (distance > rangeMx) {
+  if (distance >= rangeMx) {
     px = width;
   }
 
