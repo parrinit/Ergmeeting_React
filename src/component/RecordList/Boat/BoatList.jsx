@@ -10,7 +10,7 @@ const BoatList = (props) => {
 
     var athleteList = props.athleteList;
     var workoutData= props.workoutData;
-    var rangeMin = 499;
+    var rangeMin = 200;
     var rangeMax = 2999;
 
     var unitPxDistance = width / (rangeMax - rangeMin) ;
@@ -29,6 +29,7 @@ const BoatList = (props) => {
         }
         getBandArray();
       }
+      var objBand = [];
 
       function getBandArray(){
         var valueCount = 0;
@@ -37,17 +38,16 @@ const BoatList = (props) => {
         console.log("nextBandMeterTemp",nextBandMeterTemp);
         valueCount = Math.ceil(nextBandMeterTemp) * step;
         console.log("valueCount",valueCount);
-        var objBand = [];
         while(valueCount <= (rangeMax-step)){
           valueCount += step;
           console.log(valueCount);
           var px = 0   
-          if (distance > rangeMn) {
-            var distanceTempPx = valueCount - rangeMn;
+          if (valueCount > rangeMin) {
+            var distanceTempPx = valueCount - rangeMin;
             px = distanceTempPx * unitPxDistance;
           }
 
-          if (distance > rangeMx) {
+          if (valueCount > rangeMax) {
             px = width;
           }
           objBand.push(
@@ -60,7 +60,8 @@ const BoatList = (props) => {
     
       return (<div className="boatListCore">
           {/* Qui aggiungere le bande */}
-          <Band px={20}></Band>
+          {/* <Band px={20}></Band> */}
+          {objBand}
           <div className="boatListStyle">{retObj}</div> 
         </div>);
 
