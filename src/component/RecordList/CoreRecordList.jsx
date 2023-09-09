@@ -47,7 +47,7 @@ const CoreRecodList = (props) =>{
   }
 
   function setDistanceTest(distance = 10){
-    startTransition(()=>{
+    startTransition(()=>{ 
       //INFO usare deep Copy
       let tempathleteOBJArray = [...athleteOBJArray];
       tempathleteOBJArray.forEach(element => {
@@ -64,7 +64,11 @@ const CoreRecodList = (props) =>{
       console.log("id",id)
       console.log("indexOfList",indexOfList)
       if(indexOfList > -1){
-        tempathleteOBJArray[indexOfList].distance += distance;
+        tempathleteOBJArray[indexOfList].distance = distance;
+        if(distance > rangeMax){
+          var diffRange = distance - rangeMax;
+          setRangeDiff(diffRange);
+        }
       }
       setathleteOBJArray(tempathleteOBJArray);
     }

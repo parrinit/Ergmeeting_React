@@ -1,21 +1,33 @@
-import React, { useRef,useState } from "react";
+import React, { useRef,useState,useEffect } from "react";
 import Band from "./Band";
 import BoatRow from "./BoatRow";
 import environment from "../../../environment/environment";
 
 const BoatList = (props) => {
     //INFO useRef is a React Hook that lets you reference a value that’s not needed for rendering.
-    const windowSize = useRef([window.innerWidth, window.innerHeight]);
+    const [windowSize,setWindowSize] = useState({ 
+      height: window.innerHeight,
+      width: window.innerWidth
+    })
+  
 
     //-60 sono 40 mi margin + 20 di larghezza boat
-    var width = windowSize.current[0] - 80;
-
+    var width = windowSize.width - 130;
     var athleteList = props.athleteList;
     var workoutData= props.workoutData;
     var rangeMin = props.rangeMin;
     var rangeMax = props.rangeMax;
 
-
+    useEffect(() => {
+      function handleResize() {
+        setWindowSize({
+          height: window.innerHeight,
+          width: window.innerWidth
+        })      
+        width = windowSize.width - 130;
+      }
+      window.addEventListener('resize', handleResize)
+    })
 
     var retObj = [];
 
@@ -59,6 +71,7 @@ const BoatList = (props) => {
 }
 
 const calcDistanceInPX = (distance, width,rangeMax,rangeMin)=>{
+  console.log(width)
   var unitPxDistance = width / (rangeMax - rangeMin) ;
 
   var px = 0   

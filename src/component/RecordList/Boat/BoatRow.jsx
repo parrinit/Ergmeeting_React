@@ -15,7 +15,7 @@ const BoatRow = (props) => {
 
   return (
     <div className="boatRowStyle">
-      <Boat px={px} distance={distance + "m"}></Boat>
+      <Boat px={px} distance={distance + "m"} name={objRecord.name}></Boat>
     </div>
   );
 };

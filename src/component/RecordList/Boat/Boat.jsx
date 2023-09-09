@@ -8,6 +8,7 @@ const Boat = (props) => {
   return (
     <div>
       <div className="boatLabelStyle" style={styles}>{props.distance}</div>
+      <div className="boatName" style={styles}>{props.name}</div>
       <div className="boatStyle" style={styles}></div>
     </div>
   );
